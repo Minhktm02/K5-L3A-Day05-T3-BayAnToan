@@ -220,27 +220,31 @@
 
 ---
 
-## §7. Kịch bản Demo & Phân công thuyết trình (Chặng 7 — 30 phút cuối)
+## §7. Demo (Chặng 7)
 
-### 7.1 Kịch bản Demo 4 phút trước Giám khảo / TA
-* **Phút 0:00 – 0:30 (Bạn A - Lát cắt & Bối cảnh):**
-  * *"Chào thầy và các bạn, nhóm em là BayAnToan giải quyết bài toán Traveloka: Chuyến bay BM213 bị huỷ do bão lúc 15h chiều, trên vé có mẹ và bé 5 tuổi. Lát cắt của nhóm là: AI tự động giữ chỗ an toàn ngay lập tức, nhưng trao quyền quyết định cuối cùng cho khách bằng 1 chạm."*
-* **Phút 0:30 – 2:00 (Bạn C - Bấm Prototype qua ca khó K1):**
-  * Thao tác trên màn hình prototype: Khách nhắn đòi đi gấp tối nay.
-  * Chỉ ngay vào nhãn vàng: *"AI nhận diện chuyến 21:00 chỉ còn 1 chỗ, không đủ cho 2 người $\rightarrow$ AI kích hoạt HAX G2 cảnh báo ngay và không làm liều."*
-  * Chỉ vào đồng hồ đếm ngược: *"AI tự động kích hoạt tool `giu_cho_chuyen_moi` chuyến 7h sáng mai trong 20 phút để chuyến bay không bị cướp mất $\rightarrow$ Đây là hành động Tự làm vì hoàn toàn đảo ngược được."*
-  * Bấm nút *"Xác nhận đổi sang BM 201"* để hoàn thành luồng thành công.
-* **Phút 2:00 – 3:00 (Bạn B - Phân tích Mức tự chủ & Nguyên tắc HAX/PAIR):**
-  * Bật toggle công tắc HAX/PAIR: Chỉ thẳng vị trí ❶ (HAX G2), ❷ (HAX G11), ❹ (Mức tự chủ ②), ❺ (Đường lui gặp nhân viên).
-  * Trả lời câu hỏi trọng tâm: *"Tại sao tool `doi_chuyen_bay` phải ở mức Cần duyệt? Vì đổi rồi là mất quyền đổi miễn phí duy nhất. Cái giá khi sai là tiền triệu, nên 1 nút bấm xác nhận là chốt chặn sinh tử."*
-* **Phút 3:00 – 4:00 (Cả nhóm - Ứng phó Ca lạ tại chỗ):**
-  * Sẵn sàng nhận ca lạ từ TA/Giảng viên.
+### 7.1 Kịch bản Demo 4 phút (Phân vai 3 thành viên)
+* **0:00 – 1:15 (Khuất Tiến Minh - Trưởng nhóm):** Giới thiệu lát cắt §1 (khách đi cùng con 5 tuổi, huỷ do bão, 3 việc không làm) và lập luận phân bổ Mức tự chủ 5 tools theo Cost-of-error §4.
+* **1:15 – 2:30 (Trần Nguyễn Hà Lan - UX & Copy):** Phân tích 2 ca đắt nhất K1 & K2 §2, câu chữ AI nguyên văn và ánh xạ 6 nguyên tắc HAX/PAIR (❶–❻) §3.
+* **2:30 – 3:30 (Trần Tuấn Đăng - Prototype Engineer):** Bấm trực tiếp prototype qua Ca K1 hiểm hóc (khách đòi chuyến BM 217 nhưng chỉ còn 1 chỗ) ở Mức ②; so sánh với Mức ① và Mức ③; mở Modal hoàn vé 2 lớp có checkbox ở K2.
+* **3:30 – 4:00 (Cả nhóm):** Trình bày 3 tiêu chí Pass/Fail §6 và nhận ca lạ từ Giám khảo / TA.
 
-### 7.2 Chuẩn bị sẵn phương án đối phó các "Ca lạ" thường gặp của Giám khảo
+---
 
-| Ca lạ Giám khảo đưa ra | Prototype / Thiết kế sẽ xử lý thế nào? | Căn cứ nguyên tắc |
-|---|---|---|
-| **Ca lạ 1:** *"Tôi muốn đổi cho bé 5 tuổi đi trước chuyến 21h, có người quen đón ở Tân Sơn Nhất, tôi đi sau!"* | AI từ chối: Trẻ dưới 12 tuổi không được bay một mình nếu không đăng ký dịch vụ đặc biệt trước 24h. AI bấm nút tự chuyển cuộc chat cho nhân viên mặt đất xử lý. | Quy định an toàn hàng không & Mức tự chủ: CẤM AI tự tách vé. |
-| **Ca lạ 2:** *"Tôi lỡ bấm đổi sang chuyến 7h rồi, giờ sếp bắt đổi sang 9h30 thì làm sao?"* | AI kiểm tra: Nếu trong vòng 10 phút, kích hoạt nút "Hoàn tác đổi vé" đưa vé về trạng thái ban đầu. Nếu quá 10 phút, thông báo vé đã xuất và hướng dẫn chuyển sang luồng nhân viên hỗ trợ đổi vé có thu phí chênh lệch. | HAX G9 (Hoàn tác có kiểm soát). |
-| **Ca lạ 3:** *"Khách mắng chửi thậm tệ: 'Lũ lừa đảo, huỷ chuyến làm tao mất hợp đồng trăm triệu, đền tiền ngay!' "* | AI không tranh cãi, không giải thích dài dòng. AI thể hiện sự đồng cảm ngắn gọn: *"Em rất hiểu sự bất tiện của anh/chị khi chuyến bay bị huỷ do bão"*, và bấm tự động chuyển thẳng sang nhân viên chăm sóc khách hàng ưu tiên. | PAIR Graceful Failure (Cảm nhận người dùng). |
+### 7.2 Ca lạ nhận được ở Demo: Prototype đã làm gì & Nhóm có đổi ý gì sau ca đó
 
+#### 1. Ca lạ nhận được từ Giám khảo / TA tại buổi Demo:
+> **Tình huống ca lạ:** Khách nhắn: *"Tôi lỡ bấm xác nhận đổi sang chuyến 07:00 sáng mai BM 201 rồi, nhưng vừa gọi điện cho người nhà thì phát hiện bé 5 tuổi bị say xe không dậy sớm nổi. Giờ tôi muốn đổi lại sang chuyến 09:30 sáng mai (BM 205) có được không?"*
+
+#### 2. Prototype và hệ thống đã làm gì:
+* **Hệ thống kiểm tra điều kiện vé:** Vé của hãng Bay Mẫu quy định *chỉ được đổi miễn phí 1 lần duy nhất trong vòng 48h*. Hành động đổi sang chuyến 07:00 trước đó đã tiêu thụ lượt đổi miễn phí này.
+* **AI không tự ý cự tuyệt lạnh lùng:** AI nhận diện khách gặp tình huống phát sinh nhân đạo (bé 5 tuổi mệt) trong khoảng thời gian rất ngắn sau khi đổi vé (< 5 phút).
+* **Xử lý trên giao diện:**
+  * AI giải thích lịch sự, minh bạch: *"Lượt đổi vé miễn phí do bão của bạn đã được áp dụng cho chuyến BM 201 (07:00). Theo quy định hãng, việc đổi chuyến lần 2 sẽ phát sinh phí chênh lệch giá vé."*
+  * AI kích hoạt cơ chế **Graceful Fallback sang con người (PAIR)**: Tự động bấm nút `chuyen_nhan_vien` hỗ trợ mặt đất của Traveloka để duyệt chính sách can thiệp đặc biệt (waiver exception) trực tiếp với hãng bay.
+  * Đồng thời, AI **tạm giữ chỗ chuyến BM 205 (09:30) trong 10 phút** để chỗ không bị người khác mua mất trong khi nhân viên đang can thiệp hỗ trợ.
+
+#### 3. Nhóm có đổi ý gì sau ca đó không?
+* **KHÔNG đổi ý về Mức tự chủ cốt lõi:** Nhóm vẫn kiên định giữ tool `doi_chuyen_bay` ở **Mức ② (Cần khách duyệt)**. Không thể đưa lên Mức ③ (AI tự làm) hay hạ xuống Mức ① (khách tự mò mẫm).
+* **ĐÃ ĐỔI Ý về thiết kế tính năng (Rút ra cải tiến UX quý giá):**
+  1. **Bổ sung "Cửa sổ hoàn tác ân hạn" (Grace Period Buffer 5 phút):** Sau khi khách bấm *Xác nhận đổi vé*, hệ thống chưa khoá cứng vé ngay trên GDS của hãng bay trong 5 phút đầu, mà duy trì một nút *"Yêu cầu đổi lại giờ bay trong 05:00 phút"* để cứu các trường hợp khách vừa bấm xong thì người nhà thay đổi ý định.
+  2. **Tách bạch rõ giữa "Lỗi do hãng/thời tiết" vs "Nhu cầu cá nhân đổi giờ":** Lần đổi 1 (do bão) là miễn phí 100%; nếu đổi lần 2 do nhu cầu cá nhân, AI cần hiển thị minh bạch bảng phí chênh lệch trước khi khách ra quyết định, tránh gây tranh chấp tài chính.
