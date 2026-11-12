@@ -224,14 +224,16 @@ main {
   background: var(--ab);
   border: 1px solid #ebd090;
   color: var(--a);
-  padding: 8px 10px;
+  padding: 10px 12px;
   border-radius: 8px;
   margin-bottom: 8px;
-  font-size: 12.5px;
-  font-weight: 600;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  display: block;
+}
+.conf .n {
+  vertical-align: -2px;
+  margin-right: 6px;
 }
 .conf-danger {
   background: #fee7e4;

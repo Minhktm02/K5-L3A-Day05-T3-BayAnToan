@@ -21,25 +21,26 @@
   </div>
   
   <div class="sub">
-    Bối cảnh: Mã <b>TRV-7Q2K</b> gồm 2 hành khách: <b>Nguyễn Minh An (34t)</b> và <b>bé Nguyễn Gia Bình (5 tuổi)</b>. Chuyến <b>BM 213 lúc 19:00 bị huỷ do bão</b>.
+    Bối cảnh: Mã đặt chỗ <b>TRV-7Q2K</b> gồm 2 hành khách: <b>Nguyễn Minh An (34t)</b> và <b>bé Nguyễn Gia Bình (5 tuổi)</b>. Chuyến <b>BM 213 lúc 19:00 bị huỷ do bão</b>.
   </div>
 
-  <!-- Băng điều khiển: Chọn Kịch bản & Mức tự chủ -->
+  <!-- Băng điều khiển: Chọn Kịch bản & Mức tự chủ độc lập -->
   <div class="controls-bar">
     <div class="scenario-selector">
-      <span>Chọn Kịch bản:</span>
-      <button class="sc-btn active" data-sc="k1" onclick="switchScenario('k1')">K1: Đi tối nay (Thiếu chỗ 2 người)</button>
+      <span>Kịch bản:</span>
+      <button class="sc-btn active" data-sc="k1" onclick="switchScenario('k1')">K1: Đòi chuyến BM 217 (Chỉ còn 1 chỗ)</button>
       <button class="sc-btn" data-sc="k2" onclick="switchScenario('k2')">K2: Đòi hoàn vé + Đền tiền bão</button>
       <button class="sc-btn" data-sc="k3" onclick="switchScenario('k3')">K3: Đổi sáng mai (Mơ hồ giờ)</button>
-      <button class="sc-btn" data-sc="k4" onclick="switchScenario('k4')">K4: Cho bé 5t bay 1 mình</button>
+      <button class="sc-btn" data-sc="k4" onclick="switchScenario('k4')">K4: Đòi tách bé 5t bay 1 mình</button>
       <button class="sc-btn" data-sc="k5" onclick="switchScenario('k5')">K5: Chuẩn (Happy Path)</button>
     </div>
 
     <div class="toggle">
-      <span>Mức tự chủ tool <code>doi_chuyen_bay</code>:</span>
-      <button data-l="1">① Gợi ý (Khách tự làm)</button>
-      <button data-l="2" class="on">② Cần khách duyệt (Nhóm chọn)</button>
-      <button data-l="3">③ Tự đổi + Hoàn tác</button>
+      <span>Mức tự chủ (Trạng thái riêng):</span>
+      <button class="lvl-btn" data-l="1" onclick="switchLevel(1)">① Gợi ý (Khách tự làm)</button>
+      <button class="lvl-btn on" data-l="2" onclick="switchLevel(2)">② Cần khách duyệt (Nhóm chọn)</button>
+      <button class="lvl-btn" data-l="3" onclick="switchLevel(3)">③ Tự đổi + Hoàn tác</button>
+      <button class="btn" onclick="resetCurrentLevel()" style="border-radius:999px; margin-left:6px; background:#fff; font-size:12px; border:1px solid var(--line);">🔄 Reset mức này</button>
     </div>
   </div>
 </header>
@@ -65,7 +66,7 @@
     <div class="chat-input-area">
       <div class="quick-chips">
         <span style="font-size:11px; font-weight:600; color:var(--mut); align-self:center;">Hỏi nhanh:</span>
-        <button class="chip" onclick="switchScenario('k1')">"Đổi tối nay gấp!"</button>
+        <button class="chip" onclick="switchScenario('k1')">"Đổi sang BM 217 tối nay"</button>
         <button class="chip" onclick="switchScenario('k2')">"Hoàn vé + đền tiền bão"</button>
         <button class="chip" onclick="switchScenario('k3')">"Đổi sang sáng mai nhé"</button>
         <button class="chip" onclick="switchScenario('k4')">"Cho con 5t bay trước"</button>
@@ -89,19 +90,19 @@
       <div class="steps-guide">
         <div class="step-item">
           <b>Bước 1 · Chọn kịch bản</b>
-          Bấm các tab K1 $\rightarrow$ K5 phía trên để thử nghiệm các tình huống rủi ro.
+          Thử các kịch bản K1 $\rightarrow$ K5. Đặc biệt xem K1: khách đòi chuyến cụ thể BM 217 nhưng thiếu chỗ!
         </div>
         <div class="step-item">
-          <b>Bước 2 · Quan sát AI</b>
-          Xem nhãn vàng cảnh báo ❶, hộp căn cứ ❷ và thẻ tự giữ chỗ đếm ngược ❹.
+          <b>Bước 2 · Đổi 3 Mức tự chủ</b>
+          Bấm ① ② ③ để thấy rõ từng mức có trạng thái & trải nghiệm hoàn toàn riêng biệt.
         </div>
         <div class="step-item">
-          <b>Bước 3 · Bấm nút hành động</b>
-          Thử bấm "Xác nhận đổi", "Chọn 09:30" ❻, "Hoàn vé" (modal 2 lớp), hoặc "Gặp nhân viên" ❺.
+          <b>Bước 3 · Thử tương tác</b>
+          Bấm "Xác nhận đổi", "Chọn 09:30" ❻, "Thôi, muốn hoàn vé", hoặc "Gặp nhân viên" ❺.
         </div>
         <div class="step-item">
-          <b>Bước 4 · Đổi 3 Mức tự chủ</b>
-          Bấm ① ② ③ để giải thích vì sao Mức ② là chốt chặn sinh tử.
+          <b>Bước 4 · Chỉ ra nguyên tắc</b>
+          Quan sát các số cam ❶ đến ❻ trên màn hình tương ứng với chuẩn Microsoft HAX & Google PAIR.
         </div>
       </div>
     </div>
@@ -119,7 +120,7 @@
     <div class="panel">
       <h2>
         <span>⚖️ Lời hứa & Mức tự chủ của 5 Tools</span>
-        <span class="sub-tag">Đánh giá theo Cost-of-Error (Cái giá khi sai)</span>
+        <span class="sub-tag">Đang xem Mức tự chủ: <b id="lvl-badge">Mức ②</b></span>
       </h2>
       <div class="promise" id="promise"></div>
       
@@ -176,26 +177,37 @@
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 
-// Trạng thái ứng dụng
+// Trạng thái RIÊNG BIỆT cho từng Mức tự chủ (không chung đụng)
 let currentScenario = 'k1';
 let currentLevel = 2; // Mặc định Mức 2 (Nhóm chọn)
-let state = 'normal'; // normal | done | staff | refund | undone
-let chosenFlight = 'BM 201';
-let secondsLeft = 1200; // 20:00 phút
-let countdownInterval = null;
 
-// Dữ liệu 5 Kịch bản
+// Trạng thái độc lập từng mức
+let state_L1 = 'start'; // start | self_service | staff
+let state_L2 = 'start'; // start | done | staff | refund
+let state_L3 = 'auto_done'; // auto_done | undone | expired | staff
+
+let chosenFlight = 'BM 201';
+
+// Đồng hồ giữ chỗ Mức 2 (20 phút)
+let holdTimer = null;
+let holdSeconds = 1200;
+
+// Đồng hồ hoàn tác Mức 3 (30 giây)
+let undoTimer = null;
+let undoSeconds = 30;
+
+// Dữ liệu 5 Kịch bản (K1 là khách đòi chuyến BM 217 cụ thể nhưng không biết thiếu chỗ!)
 const SCENARIOS = {
   k1: {
     id: 'k1',
-    title: 'K1: Đi tối nay (Thiếu chỗ 2 người)',
+    title: 'K1: Đòi chuyến BM 217 (Chỉ còn 1 chỗ)',
     badge: 'Đắt nhất 1 · Không chấp nhận được',
     badgeClass: 'danger',
     layer: '② Mơ hồ + ④ Hiểu sâu nghiệp vụ (Domain)',
-    userMsg: 'Đổi cho tôi chuyến sớm nhất tối nay đi gấp, có việc khẩn!',
-    risk: 'Chuyến BM 217 lúc 21:00 chỉ còn đúng 1 chỗ. Khách đi 2 người (mẹ + bé 5 tuổi). Nếu AI đoán mò tự gọi doi_chuyen_bay sẽ làm tách vé, mẹ bay được còn con 5 tuổi bị kẹt lại sân bay đêm bão.',
-    fix: 'AI kiểm tra số khách (2) > số chỗ (1). Từ chối đổi liều BM 217; chủ động tạm giữ 2 chỗ chuyến sáng mai BM 201 (07:00, 9 chỗ) trong 20 phút và hiện nút chờ khách duyệt.',
-    toolTrig: 'tra_cuu_dat_cho -> giu_cho_chuyen_moi -> CHẶN doi_chuyen_bay'
+    userMsg: 'Đổi cho 2 mẹ con tôi sang chuyến BM 217 lúc 21:00 tối nay nhé, có việc gia đình rất khẩn cấp!',
+    risk: 'Khách thấy chuyến BM 217 (21:00) nên đòi đổi. Nhưng chuyến này CHỈ CÒN ĐÚNG 1 CHỖ! Nếu AI máy móc gọi doi_chuyen_bay(BM 217), hệ thống sẽ tách khách: mẹ có vé còn con 5 tuổi bị kẹt lại sân bay đêm bão.',
+    fix: 'AI kiểm tra số khách (2) > số chỗ trống (1). Chặn đứng việc đổi BM 217; chủ động giữ 2 chỗ chuyến sáng mai BM 201 (07:00, 9 chỗ) trong 20 phút và hiển thị thẻ xác nhận/chọn chuyến khác.',
+    toolTrig: 'tra_cuu_dat_cho -> giu_cho_chuyen_moi -> CHẶN doi_chuyen_bay(BM 217)'
   },
   k2: {
     id: 'k2',
@@ -210,7 +222,7 @@ const SCENARIOS = {
   },
   k3: {
     id: 'k3',
-    title: 'K3: Đổi sang sáng mai (Mơ hồ giờ)',
+    title: 'K3: Đổi sáng mai (Mơ hồ giờ)',
     badge: 'Sửa được',
     badgeClass: 'warn',
     layer: '② Mơ hồ (Thiếu thông tin giờ bay)',
@@ -221,12 +233,12 @@ const SCENARIOS = {
   },
   k4: {
     id: 'k4',
-    title: 'K4: Cho bé 5 tuổi bay 1 mình tối nay',
+    title: 'K4: Đòi tách bé 5t bay 1 mình tối nay',
     badge: 'Không chấp nhận được',
     badgeClass: 'danger',
     layer: '③ Ngoài thẩm quyền + ④ Domain Hàng không',
-    userMsg: 'Đổi cho một mình bé con tôi bay về trước chuyến 21:00 tối nay, tôi ở lại đi sau cũng được!',
-    risk: 'AI vội chiều khách gọi doi_chuyen_bay tách vé cho bé Nguyễn Gia Bình (5 tuổi) bay 1 mình -> Vi phạm nghiêm trọng Luật Hàng không (trẻ dưới 12 tuổi không được bay một mình).',
+    userMsg: 'Chuyến 21:00 còn 1 chỗ đúng không? Vậy đổi cho một mình con tôi bay về trước, tôi ở lại đi sau cũng được!',
+    risk: 'AI vội chiều khách gọi doi_chuyen_bay tách vé cho bé Nguyễn Gia Bình (5 tuổi) bay 1 mình -> Vi phạm nghiêm trọng Luật Hàng không (trẻ dưới 12 tuổi không được bay một mình nếu không đăng ký dịch vụ đặc biệt trước 24h).',
     fix: 'Hệ thống từ chối dứt khoát; trích dẫn luật hàng không; hướng dẫn cả hai cùng bay sáng mai hoặc gọi nhân viên mặt đất hỗ trợ.',
     toolTrig: 'TỪ CHỐI doi_chuyen_bay -> Gợi ý chuyến cả 2 người hoặc Chuyển nhân viên'
   },
@@ -243,21 +255,40 @@ const SCENARIOS = {
   }
 };
 
-// Khởi chạy đồng hồ giữ chỗ 20 phút
-function startTimer() {
-  if (countdownInterval) clearInterval(countdownInterval);
-  secondsLeft = 1200; // 20:00
-  countdownInterval = setInterval(() => {
-    if (secondsLeft > 0) {
-      secondsLeft--;
-      const m = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
-      const s = (secondsLeft % 60).toString().padStart(2, '0');
+// Đếm ngược giữ chỗ Mức 2
+function startHoldTimer() {
+  if (holdTimer) clearInterval(holdTimer);
+  holdSeconds = 1200; // 20:00
+  holdTimer = setInterval(() => {
+    if (holdSeconds > 0) {
+      holdSeconds--;
+      const m = Math.floor(holdSeconds / 60).toString().padStart(2, '0');
+      const s = (holdSeconds % 60).toString().padStart(2, '0');
       const el = $('#tm');
       if (el) el.textContent = `${m}:${s}`;
     } else {
-      clearInterval(countdownInterval);
+      clearInterval(holdTimer);
       const el = $('#tm');
       if (el) el.textContent = '00:00 (Hết hạn)';
+    }
+  }, 1000);
+}
+
+// Đếm ngược hoàn tác Mức 3 (30 giây)
+function startUndoTimer() {
+  if (undoTimer) clearInterval(undoTimer);
+  undoSeconds = 30;
+  undoTimer = setInterval(() => {
+    if (undoSeconds > 0) {
+      undoSeconds--;
+      const el = $('#undo-tm');
+      if (el) el.textContent = `${undoSeconds}s`;
+    } else {
+      clearInterval(undoTimer);
+      if (state_L3 === 'auto_done') {
+        state_L3 = 'expired';
+        render();
+      }
     }
   }, 1000);
 }
@@ -265,23 +296,36 @@ function startTimer() {
 // Chuyển kịch bản
 function switchScenario(scKey) {
   currentScenario = scKey;
-  state = 'normal';
+  // Reset trạng thái các mức khi đổi kịch bản
+  state_L1 = 'start';
+  state_L2 = 'start';
+  state_L3 = 'auto_done';
   chosenFlight = 'BM 201';
+
   $$('.sc-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-sc') === scKey));
-  startTimer();
+  startHoldTimer();
+  if (currentLevel === 3) startUndoTimer();
   render();
 }
 
-// Chuyển mức tự chủ (1, 2, 3)
-$$('.toggle button').forEach(b => {
-  b.addEventListener('click', () => {
-    $$('.toggle button').forEach(x => x.classList.remove('on'));
-    b.classList.add('on');
-    currentLevel = parseInt(b.getAttribute('data-l'));
-    state = 'normal';
-    render();
-  });
-});
+// Chuyển Mức tự chủ
+function switchLevel(lvl) {
+  currentLevel = lvl;
+  $$('.lvl-btn').forEach(b => b.classList.toggle('on', parseInt(b.getAttribute('data-l')) === lvl));
+  $('#lvl-badge').textContent = `Mức ${lvl === 1 ? '① (Chỉ gợi ý)' : lvl === 2 ? '② (Cần duyệt)' : '③ (Tự làm + Hoàn tác)'}`;
+  
+  if (lvl === 2) startHoldTimer();
+  if (lvl === 3 && state_L3 === 'auto_done') startUndoTimer();
+  render();
+}
+
+// Reset riêng mức hiện tại
+function resetCurrentLevel() {
+  if (currentLevel === 1) state_L1 = 'start';
+  if (currentLevel === 2) { state_L2 = 'start'; startHoldTimer(); }
+  if (currentLevel === 3) { state_L3 = 'auto_done'; startUndoTimer(); }
+  render();
+}
 
 // Bật/tắt chú thích HAX/PAIR
 $('#ann').addEventListener('change', e => {
@@ -294,7 +338,7 @@ function pickFlight(f) {
   render();
 }
 
-// Gửi tin nhắn tuỳ biến từ input
+// Gửi tin nhắn tuỳ biến từ ô chat
 function sendCustom() {
   const val = $('#userInput').value.trim();
   if (!val) return;
@@ -305,7 +349,7 @@ function sendCustom() {
     switchScenario('k2');
   } else if (lower.includes('con') || lower.includes('bé') || lower.includes('tách') || lower.includes('1 mình')) {
     switchScenario('k4');
-  } else if (lower.includes('tối nay') || lower.includes('gấp') || lower.includes('21')) {
+  } else if (lower.includes('217') || lower.includes('tối nay') || lower.includes('gấp') || lower.includes('21')) {
     switchScenario('k1');
   } else if (lower.includes('sáng mai')) {
     switchScenario('k3');
@@ -314,18 +358,12 @@ function sendCustom() {
   }
 }
 
-// Hành động đổi trạng thái
-function setState(s) {
-  state = s;
-  render();
-}
-
 // Thực hiện hoàn vé từ modal
 function executeRefund() {
   $('#m').classList.remove('show');
   $('#ok').checked = false;
   $('#send').disabled = true;
-  state = 'refund';
+  state_L2 = 'refund';
   render();
 }
 
@@ -333,7 +371,7 @@ function executeRefund() {
 function render() {
   const sc = SCENARIOS[currentScenario];
 
-  // 1. Cập nhật Badge & Thông tin kịch bản cột phải
+  // 1. Phân tích Kịch bản cột phải
   $('#sc-badge-container').innerHTML = `<span class="badge ${sc.badgeClass}">${sc.badge}</span>`;
   $('#sc-info').innerHTML = `
     <div style="margin-bottom:6px;"><b>Khách nhắn:</b> "<i>${sc.userMsg}</i>"</div>
@@ -343,18 +381,18 @@ function render() {
     <div><b>Luồng tool kích hoạt:</b> <code>${sc.toolTrig}</code></div>
   `;
 
-  // 2. Cập nhật Lời hứa theo mức tự chủ
+  // 2. Lời hứa theo Mức tự chủ đang chọn
   const promises = {
-    1: `<b>Mức ① (Chỉ gợi ý):</b> "AI chỉ tìm kiếm thông tin và hiển thị danh sách; Bạn phải tự thoát ra các màn hình để chọn và chốt vé."<br><small style="color:var(--r)">⚠️ Điểm yếu: Thao tác chậm chạp qua gần 10 bước, đêm bão khách cuống cuồng sẽ bị người khác mua mất vé.</small>`,
-    2: `<b>Mức ② (Cần khách duyệt — Nhóm chọn):</b> "AI tự động giữ chỗ an toàn ngay lập tức cho bạn trong 20 phút; Bạn là người quyết định cuối cùng bằng một chạm."<br><small style="color:var(--g)">🛡️ Tối ưu: Vừa không bị cướp mất chỗ, vừa bảo toàn 100% quyền kiểm soát vé và lần đổi miễn phí duy nhất.</small>`,
+    1: `<b>Mức ① (Chỉ gợi ý — Khách tự làm):</b> "AI chỉ tìm kiếm thông tin và hiển thị danh sách; Bạn phải tự thoát ra các màn hình để chọn và chốt vé."<br><small style="color:var(--r)">⚠️ Điểm yếu: Thao tác chậm chạp qua gần 10 bước, đêm bão khách cuống cuồng sẽ bị người khác mua mất vé.</small>`,
+    2: `<b>Mức ② (Cần khách duyệt — Mức nhóm chọn):</b> "AI tự động giữ chỗ an toàn ngay lập tức cho bạn trong 20 phút; Bạn là người quyết định cuối cùng bằng một chạm."<br><small style="color:var(--g)">🛡️ Tối ưu: Vừa không bị cướp mất chỗ, vừa bảo toàn 100% quyền kiểm soát vé và lần đổi miễn phí duy nhất.</small>`,
     3: `<b>Mức ③ (Tự làm + Hoàn tác):</b> "AI tự động chốt đổi vé luôn cho bạn; Bạn có 30 giây để bấm nút Hoàn tác nếu không ưng ý."<br><small style="color:var(--r)">⚠️ Rủi ro cực lớn: Nếu khách không để mắt tới điện thoại đúng 30 giây, vé bị đổi sai và mất luôn lượt đổi miễn phí.</small>`
   };
   $('#promise').innerHTML = promises[currentLevel];
 
-  // 3. Cập nhật Bảng 5 Tools
+  // 3. Ma trận 5 Tools
   const toolsData = [
     { name: 'tra_cuu_dat_cho', l: 'TỰ LÀM', desc: 'Chỉ đọc (Read-only). Tải lại thông tin không mất tiền hay mất vé.' },
-    { name: 'giu_cho_chuyen_moi', l: 'TỰ LÀM', desc: 'Đảo ngược được 100%. Giữ 20 phút tự nhả nếu không duyệt, không trừ phí.' },
+    { name: 'giu_cho_chuyen_moi', l: currentLevel === 1 ? 'CẤM' : 'TỰ LÀM', desc: currentLevel === 1 ? 'Mức 1 không tự giữ chỗ.' : 'Đảo ngược được 100%. Giữ 20 phút tự nhả nếu không duyệt, không trừ phí.' },
     { 
       name: 'doi_chuyen_bay', 
       l: currentLevel === 1 ? 'GỢI Ý' : currentLevel === 2 ? 'CẦN DUYỆT (1 chạm)' : 'TỰ ĐỔI + HOÀN TÁC', 
@@ -373,7 +411,7 @@ function render() {
     </tr>
   `).join('');
 
-  // 4. Cập nhật Chú thích HAX/PAIR
+  // 4. Chú thích 6 Nguyên tắc HAX/PAIR
   const annData = [
     { n: '1', name: 'HAX G1 & Luật AI VN', desc: 'Avatar & tên thể hiện rõ là AI: Trợ lý đổi vé tự động (AI) — Traveloka Support.' },
     { n: '2', name: 'HAX G11 + PAIR Explainability', desc: 'Hộp thoại xám minh bạch căn cứ: Mã TRV-7Q2K, lý do huỷ do bão, chính sách miễn phí 1 lần/48h.' },
@@ -389,278 +427,330 @@ function render() {
     </li>
   `).join('');
 
-  // 5. Render Nội dung Chat theo Kịch bản & Trạng thái
+  // 5. Render Nội dung Chat THEO MỨC TỰ CHỦ ĐANG CHỌN (TRẠNG THÁI RIÊNG)
   let chatHTML = `<div class="me">${sc.userMsg}</div>`;
-
-  const escButton = `<button class="btn out" onclick="setState('staff')"><span class="n">5</span>Gặp nhân viên hỗ trợ</button>`;
+  const escButton = `<button class="btn out" onclick="setStaff()"><span class="n">5</span>Gặp nhân viên hỗ trợ</button>`;
   const evidenceHTML = `
     <div class="ev">
       <span class="n">2</span><b>Dựa vào:</b> Đặt chỗ TRV-7Q2K · 2 hành khách (kèm trẻ 5 tuổi) · Chuyến BM 213 huỷ do bão · Chính sách: Đổi miễn phí 1 lần/48h.
     </div>
   `;
 
-  if (state === 'staff') {
-    chatHTML += `
-      <div class="ai">
-        <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-        Mình đã chuyển cuộc trò chuyện tới nhân viên hỗ trợ trực tuyến. Thời gian chờ khoảng <b>2 phút</b>.<br><br>
-        Nhân viên đã thấy sẵn hồ sơ tóm tắt:
-        <div style="background:#eef2f7; padding:8px 10px; border-radius:6px; margin:8px 0; font-size:12.5px;">
-          • Khách: Nguyễn Minh An + bé Nguyễn Gia Bình (5 tuổi)<br>
-          • Tình huống: Chuyến BM 213 huỷ do bão<br>
-          • Trạng thái: Đang tạm giữ chỗ chuyến ${chosenFlight} sáng mai; khách yêu cầu hỗ trợ đặc biệt.
+  if (currentLevel === 1) {
+    // ==========================================
+    // MỨC 1: CHỈ GỢI Ý (KHÁCH TỰ THAO TÁC)
+    // ==========================================
+    if (state_L1 === 'self_service') {
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div style="background:#eef2f7; padding:10px; border-radius:8px; border:1px dashed #4a90e2; font-size:12.5px;">
+            <b>🖥️ Đang chuyển sang màn hình Đổi lịch tự phục vụ:</b><br>
+            • Bạn đang tự tìm kiếm chuyến bay thay thế trên app Traveloka.<br>
+            • <i>Lưu ý:</i> Hệ thống KHÔNG tự động giữ chỗ cho bạn. Vé có thể hết bất cứ lúc nào trong khi bạn thao tác.<br>
+            • Bạn phải tự duyệt qua 6 màn hình xác nhận và thanh toán chênh lệch.
+          </div>
+          <div class="btns" style="margin-top:10px;">
+            <button class="btn" onclick="state_L1='start'; render()">Quay lại chat</button>
+            ${escButton}
+          </div>
         </div>
-        Bạn không cần phải giải thích lại từ đầu.
-        <div class="btns" style="margin-top:10px;">
-          <button class="btn" onclick="setState('normal')">Quay lại tự thao tác</button>
+      `;
+    } else if (state_L1 === 'staff') {
+      chatHTML += renderStaffView();
+    } else {
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div class="conf"><span class="n">1</span><b>Không thể đổi sang BM 217 (21:00):</b> Chuyến bay bạn yêu cầu chỉ còn đúng 1 chỗ trống, không đủ cho cả bạn và bé Gia Bình (5 tuổi).</div>
+          
+          <p style="margin:6px 0;">Hệ thống Mức ① không có quyền tự giữ chỗ. Dưới đây là các chuyến bay sáng mai còn chỗ, bạn vui lòng tự truy cập màn hình Đổi lịch để thao tác:</p>
+          
+          <div class="opt disabled"><div><b>BM 217</b> · 12/11 21:00<br><small style="color:var(--r)">Chỉ còn 1 chỗ — Không thể chọn cho 2 người</small></div></div>
+          <div class="opt"><div><b>BM 201</b> · 13/11 07:00<br><small>Còn 9 chỗ trống</small></div></div>
+          <div class="opt"><div><b>BM 205</b> · 13/11 09:30<br><small>Còn 4 chỗ trống</small></div></div>
+          
+          ${evidenceHTML}
+          
+          <div class="btns" style="margin-top:10px;">
+            <button class="btn pri" onclick="state_L1='self_service'; render()">Mở trang Đổi lịch (Tự thao tác 6 bước)</button>
+            ${escButton}
+          </div>
         </div>
-      </div>
-    `;
-  } else if (state === 'refund') {
-    chatHTML += `
-      <div class="ai">
-        <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-        <div class="box warn" style="background:#fff3bf; border-color:#ffe066; color:#d9480f;">
-          <b>Đã ghi nhận yêu cầu hoàn vé!</b> Mã hồ sơ: <b>HT-99213</b>.<br>
-          • Tiền vé 100% (không thu phí huỷ) sẽ hoàn về thẻ thanh toán trong <b>14–90 ngày</b>.<br>
-          • Theo quy định bão bất khả kháng, <b>không áp dụng bồi thường tiền mặt</b>.<br>
-          • Mọi chỗ giữ tạm trên chuyến bay thay thế đã được nhả về hệ thống.
+      `;
+    }
+  } else if (currentLevel === 2) {
+    // ==========================================
+    // MỨC 2: CẦN KHÁCH DUYỆT (MỨC NHÓM CHỌN)
+    // ==========================================
+    if (state_L2 === 'done') {
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div class="box done">
+            <b style="font-size:14px;">🎉 ĐỔI CHUYẾN BAY THÀNH CÔNG!</b><br>
+            • Chuyến mới: <b>${chosenFlight} (${chosenFlight==='BM 201'?'07:00':'09:30'}, 13/11)</b><br>
+            • Hành khách: Nguyễn Minh An & bé Nguyễn Gia Bình (5 tuổi)<br>
+            • Chi phí: <b>0 đ</b> (Đã sử dụng lần đổi miễn phí duy nhất)<br>
+            Vé điện tử mới đã gửi về email của bạn. Chúc hai mẹ con có chuyến bay an toàn!
+          </div>
+          <div class="btns" style="margin-top:10px;">
+            <button class="btn pri" onclick="alert('Đang tải vé điện tử (E-ticket) cho 2 hành khách...')">📄 Xem vé điện tử (E-ticket)</button>
+            <button class="btn" onclick="alert('Đã lưu chuyến bay mới vào Lịch trình Traveloka của bạn!')">📅 Thêm vào lịch</button>
+            ${escButton}
+          </div>
         </div>
-        <div class="btns" style="margin-top:10px;">
-          <button class="btn" onclick="setState('normal')">Quay lại màn hình chính</button>
-          ${escButton}
+      `;
+    } else if (state_L2 === 'staff') {
+      chatHTML += renderStaffView();
+    } else if (state_L2 === 'refund') {
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div class="box warn" style="background:#fff3bf; border-color:#ffe066; color:#d9480f;">
+            <b>Đã ghi nhận yêu cầu hoàn vé!</b> Mã hồ sơ: <b>HT-99213</b>.<br>
+            • Tiền vé 100% (không thu phí huỷ) sẽ hoàn về thẻ thanh toán trong <b>14–90 ngày</b>.<br>
+            • Theo quy định bão bất khả kháng, <b>không áp dụng bồi thường tiền mặt</b>.<br>
+            • Mọi chỗ giữ tạm trên chuyến bay thay thế đã được nhả về hệ thống.
+          </div>
+          <div class="btns" style="margin-top:10px;">
+            <button class="btn" onclick="alert('Đang mở chi tiết hồ sơ hoàn vé HT-99213...')">📄 Theo dõi tiến trình hoàn tiền</button>
+            ${escButton}
+          </div>
         </div>
-      </div>
-    `;
-  } else if (state === 'done') {
-    chatHTML += `
-      <div class="ai">
-        <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-        <div class="box done">
-          <b style="font-size:14px;">🎉 ĐỔI CHUYẾN BAY THÀNH CÔNG!</b><br>
-          • Chuyến mới: <b>${chosenFlight} (${chosenFlight==='BM 201'?'07:00':'09:30'}, 13/11)</b><br>
-          • Hành khách: Nguyễn Minh An & bé Nguyễn Gia Bình (5 tuổi)<br>
-          • Chi phí: <b>0 đ</b> (Đã sử dụng lần đổi miễn phí duy nhất)<br>
-          Vé điện tử mới đã gửi về email của bạn. Chúc hai mẹ con có chuyến bay an toàn!
-        </div>
-        <div class="btns" style="margin-top:10px;">
-          <button class="btn" onclick="setState('normal')">Thử lại ca này</button>
-          ${escButton}
-        </div>
-      </div>
-    `;
+      `;
+    } else {
+      // Giao diện chính của Mức 2 (xử lý thông minh theo kịch bản)
+      if (currentScenario === 'k1') {
+        chatHTML += `
+          <div class="ai">
+            <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+            <div class="conf"><span class="n">1</span><b>Không thể đổi sang BM 217 tối nay:</b> Chuyến bay bạn yêu cầu chỉ còn đúng 1 chỗ trống. Bé Gia Bình (5 tuổi) không thể bay một mình theo Luật Hàng không.</div>
+            
+            <div><span class="n">3</span>Để không bị mất chỗ, mình đã <b>tự động giữ 2 chỗ</b> chuyến sáng mai sớm nhất còn đủ chỗ cho cả hai mẹ con:</div>
+
+            <div class="opt disabled">
+              <div><b>BM 217</b> · 12/11 21:00<br><small style="color:var(--r)">Chỉ còn 1 chỗ — Bạn yêu cầu nhưng không đủ chỗ cho 2 người</small></div>
+              <button class="btn" disabled style="opacity:.5">Không đủ chỗ</button>
+            </div>
+
+            <div class="opt ${chosenFlight==='BM 201'?'sel':''}">
+              <div><b>BM 201</b> · 13/11 07:00<br><small>Còn 9 chỗ trống · Khuyên dùng cho cả 2 mẹ con</small></div>
+              ${chosenFlight!=='BM 201' ? `<button class="btn" onclick="pickFlight('BM 201')">Chọn</button>` : `<span style="color:var(--g);font-weight:700;font-size:12px;">Đang giữ chỗ</span>`}
+            </div>
+
+            <div class="opt ${chosenFlight==='BM 205'?'sel':''}">
+              <div><b>BM 205</b> · 13/11 09:30<br><small>Còn 4 chỗ trống · Giờ đẹp buổi sáng</small></div>
+              ${chosenFlight!=='BM 205' ? `<button class="btn" onclick="pickFlight('BM 205')">Chọn</button>` : `<span style="color:var(--g);font-weight:700;font-size:12px;">Đang giữ chỗ</span>`}
+            </div>
+
+            <div class="box hold">
+              <span class="n">4</span><b>ĐÃ TỰ ĐỘNG GIỮ 2 CHỖ: ${chosenFlight}</b> trong <span class="timer" id="tm">20:00</span>.<br>
+              <small>Chưa trừ phí · Chưa tính mất lần đổi miễn phí của bạn.</small>
+            </div>
+
+            <div class="box warn">
+              <b>Xác nhận đổi vé:</b> BM 213 → <b>${chosenFlight} (${chosenFlight==='BM 201'?'07:00':'09:30'})</b> · 2 hành khách · Phí 0 đ · Sử dụng lần đổi miễn phí duy nhất.
+              <div class="btns" style="margin-top:8px;">
+                <button class="btn pri" onclick="state_L2='done'; render()">Xác nhận đổi sang ${chosenFlight}</button>
+                <button class="btn" onclick="pickFlight(chosenFlight==='BM 201'?'BM 205':'BM 201')"><span class="n">6</span>Sửa: Chọn ${chosenFlight==='BM 201'?'09:30':'07:00'}</button>
+                ${escButton}
+              </div>
+            </div>
+
+            ${evidenceHTML}
+
+            <div class="btns" style="margin-top:10px;">
+              <button class="btn" onclick="$('#m').classList.add('show')">Thôi, muốn hoàn vé</button>
+            </div>
+          </div>
+        `;
+      } else if (currentScenario === 'k2') {
+        chatHTML += `
+          <div class="ai">
+            <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+            <div class="conf conf-danger">
+              <span class="n">1</span><b>Quy định huỷ chuyến do thời tiết:</b> Chuyến BM 213 bị huỷ do bão (bất khả kháng) nên được hoàn 100% tiền vé, nhưng <b>không áp dụng bồi thường tiền mặt</b> theo Luật Hàng không.
+            </div>
+            
+            <p style="margin:6px 0;">Nếu hoàn vé, bạn sẽ <b>mất toàn bộ quyền đổi sang các chuyến bay thay thế</b> và tiền hoàn sẽ về thẻ sau <b>14–90 ngày</b>.</p>
+            
+            <div class="box hold">
+              <b>Gợi ý bảo vệ hành trình:</b> Để không bị lỡ công việc và có chỗ về, mình khuyên bạn nên đổi sang chuyến sáng mai <b>BM 201 (07:00)</b> hoàn toàn miễn phí.
+            </div>
+
+            ${evidenceHTML}
+
+            <div class="btns" style="margin-top:12px;">
+              <button class="btn pri" onclick="switchScenario('k1')">Giữ vé, đổi sang sáng mai (0đ)</button>
+              <button class="btn danger" onclick="$('#m').classList.add('show')">Tôi vẫn muốn hoàn vé</button>
+              ${escButton}
+            </div>
+          </div>
+        `;
+      } else if (currentScenario === 'k3') {
+        chatHTML += `
+          <div class="ai">
+            <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+            <div><span class="n">3</span>Sáng mai có <b>2 chuyến bay còn chỗ</b> cho cả hai mẹ con. Bạn muốn bay lúc mấy giờ?</div>
+
+            <div class="opt ${chosenFlight==='BM 201'?'sel':''}">
+              <div><b>BM 201 · 13/11 07:00</b><br><small>Còn 9 chỗ trống · Đến TP.HCM lúc 09:15</small></div>
+              <button class="btn ${chosenFlight==='BM 201'?'pri':''}" onclick="pickFlight('BM 201')">${chosenFlight==='BM 201'?'Đang chọn':'Chọn 07:00'}</button>
+            </div>
+
+            <div class="opt ${chosenFlight==='BM 205'?'sel':''}">
+              <div><b>BM 205 · 13/11 09:30</b><br><small>Còn 4 chỗ trống · Giờ đẹp cho bé đỡ mệt</small></div>
+              <button class="btn ${chosenFlight==='BM 205'?'pri':''}" onclick="pickFlight('BM 205')">${chosenFlight==='BM 205'?'Đang chọn':'Chọn 09:30'}</button>
+            </div>
+
+            <div class="box hold">
+              <span class="n">4</span><b>ĐÃ TỰ ĐỘNG GIỮ 2 CHỖ: ${chosenFlight}</b> trong <span class="timer" id="tm">20:00</span>.
+            </div>
+
+            <div class="btns" style="margin-top:10px;">
+              <button class="btn pri" onclick="state_L2='done'; render()">Xác nhận đổi sang ${chosenFlight}</button>
+              ${escButton}
+            </div>
+            ${evidenceHTML}
+          </div>
+        `;
+      } else if (currentScenario === 'k4') {
+        chatHTML += `
+          <div class="ai">
+            <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+            <div class="conf conf-danger">
+              <span class="n">1</span><b>Từ chối thao tác tách vé:</b> Bé Nguyễn Gia Bình mới 5 tuổi. Theo Luật An toàn Hàng không, trẻ em dưới 12 tuổi <b>bắt buộc phải có người lớn đi cùng chuyến bay</b>. Hệ thống không thể tách vé cho bé bay một mình tối nay.
+            </div>
+
+            <p style="margin:6px 0;">Để an toàn cho bé, mình đã chuẩn bị sẵn phương án cả 2 mẹ con cùng bay chuyến sớm nhất sáng mai:</p>
+
+            <div class="opt sel">
+              <div><b>BM 201 · 13/11 07:00</b><br><small>Đủ 2 chỗ cho mẹ và bé · Giữ chỗ 20 phút</small></div>
+              <span style="color:var(--g);font-weight:700;font-size:12px;">Khuyên dùng</span>
+            </div>
+
+            <div class="btns" style="margin-top:12px;">
+              <button class="btn pri" onclick="state_L2='done'; render()">Đổi cả 2 người sang BM 201</button>
+              <button class="btn" onclick="setStaff()"><span class="n">5</span>Gặp nhân viên hỗ trợ trực tiếp</button>
+            </div>
+            ${evidenceHTML}
+          </div>
+        `;
+      } else {
+        // K5
+        chatHTML += `
+          <div class="ai">
+            <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+            <div>Thông tin rất rõ ràng! Mình đã kiểm tra chuyến <b>BM 201 (07:00, 13/11)</b> còn 9 chỗ trống, đủ cho 2 hành khách.</div>
+
+            <div class="box hold" style="margin-top:8px;">
+              <span class="n">4</span><b>ĐÃ TỰ ĐỘNG GIỮ 2 CHỖ: BM 201</b> trong <span class="timer" id="tm">20:00</span>.<br>
+              <small>Khách: Nguyễn Minh An & Nguyễn Gia Bình · Phí đổi: 0 đ</small>
+            </div>
+
+            <div class="btns" style="margin-top:10px;">
+              <button class="btn pri" onclick="state_L2='done'; render()">Xác nhận đổi sang BM 201</button>
+              <button class="btn" onclick="switchScenario('k3')">Xem chuyến khác</button>
+              ${escButton}
+            </div>
+            ${evidenceHTML}
+          </div>
+        `;
+      }
+    }
   } else {
-    // Luồng bình thường phân theo Kịch bản
-    if (currentScenario === 'k1') {
-      // CA K1: THIẾU CHỖ TỐI NAY
-      chatHTML += renderK1(evidenceHTML, escButton);
-    } else if (currentScenario === 'k2') {
-      // CA K2: ĐÒI HOÀN VÉ + ĐỀN BÃO
-      chatHTML += renderK2(evidenceHTML, escButton);
-    } else if (currentScenario === 'k3') {
-      // CA K3: ĐỔI SÁNG MAI (MƠ HỒ GIỜ)
-      chatHTML += renderK3(evidenceHTML, escButton);
-    } else if (currentScenario === 'k4') {
-      // CA K4: ĐÒI TÁCH BÉ 5 TUỔI BAY 1 MÌNH
-      chatHTML += renderK4(evidenceHTML, escButton);
-    } else if (currentScenario === 'k5') {
-      // CA K5: HAPPY PATH
-      chatHTML += renderK5(evidenceHTML, escButton);
+    // ==========================================
+    // MỨC 3: TỰ LÀM + HOÀN TÁC (30 GIÂY)
+    // ==========================================
+    if (state_L3 === 'undone') {
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div class="box warn" style="background:#fff3bf; border-color:#ffe066; color:#d9480f;">
+            <b>ĐÃ HOÀN TÁC THÀNH CÔNG!</b><br>
+            Vé đã được trả về trạng thái chuyến bị huỷ ban đầu. Lần đổi miễn phí duy nhất của bạn vẫn còn nguyên.
+          </div>
+          <p style="margin:8px 0;">Bạn muốn đổi sang chuyến nào khác?</p>
+          <div class="btns" style="margin-top:10px;">
+            <button class="btn pri" onclick="state_L3='auto_done'; startUndoTimer(); render()">Đổi lại sang BM 201 (07:00)</button>
+            ${escButton}
+          </div>
+        </div>
+      `;
+    } else if (state_L3 === 'expired') {
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div class="box done">
+            <b>ĐÃ HẾT THỜI GIAN HOÀN TÁC (Quá 30 giây)!</b><br>
+            Vé mới trên chuyến <b>BM 201 (07:00, 13/11)</b> đã được chốt và xuất vé chính thức. Bạn đã sử dụng lần đổi miễn phí duy nhất.
+          </div>
+          <div class="btns" style="margin-top:10px;">
+            <button class="btn pri" onclick="alert('Đang mở vé điện tử chính thức...')">📄 Xem vé điện tử</button>
+            ${escButton}
+          </div>
+        </div>
+      `;
+    } else if (state_L3 === 'staff') {
+      chatHTML += renderStaffView();
+    } else {
+      // Mức 3: Tự động chốt vé luôn cho khách!
+      chatHTML += `
+        <div class="ai">
+          <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
+          <div class="box done">
+            <b>⚡ AI ĐÃ TỰ ĐỘNG CHỐT ĐỔI VÉ CHO BẠN!</b><br>
+            • Chuyến yêu cầu BM 217 (21:00) chỉ còn 1 chỗ trống không đủ 2 người.<br>
+            • AI đã tự động đổi 2 vé sang chuyến sớm nhất sáng mai: <b>BM 201 (07:00, 13/11)</b>.<br>
+            <div style="background:#fff; padding:8px 12px; border-radius:6px; margin:10px 0; border:1.5px solid #ffc107; color:#d9480f; font-weight:600;">
+              ⏱️ Thời gian hoàn tác còn lại: <span id="undo-tm" style="font-size:15px; font-weight:800; color:#c92a2a;">${undoSeconds}s</span>.
+            </div>
+            <div class="btns">
+              <button class="btn danger" onclick="state_L3='undone'; clearInterval(undoTimer); render()">Hoàn tác đổi vé ngay</button>
+              ${escButton}
+            </div>
+          </div>
+          ${evidenceHTML}
+        </div>
+      `;
     }
   }
 
   $('#chat').innerHTML = chatHTML;
 }
 
-// Render Kịch bản K1
-function renderK1(evidenceHTML, escButton) {
-  if (currentLevel === 1) {
-    return `
-      <div class="ai">
-        <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-        <div class="conf"><span class="n">1</span>Chưa thể đổi chuyến 21:00: Chuyến BM 217 chỉ còn đúng 1 chỗ trống, không đủ cho cả bạn và bé Gia Bình (5 tuổi).</div>
-        Bạn có thể tự chọn chuyến sáng mai trên app:
-        <div class="opt disabled"><div><b>BM 217</b> · 12/11 21:00<br><small style="color:var(--r)">Chỉ còn 1 chỗ — Không thể đặt cho 2 người</small></div></div>
-        <div class="opt"><div><b>BM 201</b> · 13/11 07:00<br><small>Còn 9 chỗ trống</small></div></div>
-        <div class="opt"><div><b>BM 205</b> · 13/11 09:30<br><small>Còn 4 chỗ trống</small></div></div>
-        ${evidenceHTML}
-        <div class="btns" style="margin-top:10px;">
-          <button class="btn pri">Mở màn hình Tự đổi lịch</button>
-          ${escButton}
-        </div>
-      </div>
-    `;
-  } else if (currentLevel === 2) {
-    return `
-      <div class="ai">
-        <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-        <div class="conf"><span class="n">1</span><b>Chưa thể đổi BM 217 tối nay:</b> Chuyến chỉ còn 1 chỗ trống. Bé Gia Bình (5 tuổi) không thể bay một mình theo Luật Hàng không.</div>
-        
-        <div><span class="n">3</span>Mình đề xuất đổi sang chuyến sáng mai còn đủ chỗ cho cả hai mẹ con:</div>
-
-        <div class="opt disabled">
-          <div><b>BM 217</b> · 12/11 21:00<br><small style="color:var(--r)">Chỉ còn 1 chỗ — Không đủ 2 khách</small></div>
-          <button class="btn" disabled style="opacity:.5">Không đủ chỗ</button>
-        </div>
-
-        <div class="opt ${chosenFlight==='BM 201'?'sel':''}">
-          <div><b>BM 201</b> · 13/11 07:00<br><small>Còn 9 chỗ trống · Khuyên dùng</small></div>
-          ${chosenFlight!=='BM 201' ? `<button class="btn" onclick="pickFlight('BM 201')">Chọn</button>` : `<span style="color:var(--g);font-weight:700;font-size:12px;">Đang giữ chỗ</span>`}
-        </div>
-
-        <div class="opt ${chosenFlight==='BM 205'?'sel':''}">
-          <div><b>BM 205</b> · 13/11 09:30<br><small>Còn 4 chỗ trống</small></div>
-          ${chosenFlight!=='BM 205' ? `<button class="btn" onclick="pickFlight('BM 205')">Chọn</button>` : `<span style="color:var(--g);font-weight:700;font-size:12px;">Đang giữ chỗ</span>`}
-        </div>
-
-        <div class="box hold">
-          <span class="n">4</span><b>ĐÃ TỰ ĐỘNG GIỮ 2 CHỖ: ${chosenFlight}</b> trong <span class="timer" id="tm">20:00</span>.<br>
-          <small>Chưa trừ phí · Chưa tính mất lần đổi miễn phí của bạn.</small>
-        </div>
-
-        <div class="box warn">
-          <b>Xác nhận đổi vé:</b> BM 213 → <b>${chosenFlight} (${chosenFlight==='BM 201'?'07:00':'09:30'})</b> · 2 hành khách · Phí 0 đ · Sử dụng lần đổi miễn phí duy nhất.
-          <div class="btns" style="margin-top:8px;">
-            <button class="btn pri" onclick="setState('done')">Xác nhận đổi sang ${chosenFlight}</button>
-            <button class="btn" onclick="pickFlight(chosenFlight==='BM 201'?'BM 205':'BM 201')"><span class="n">6</span>Sửa: Chọn ${chosenFlight==='BM 201'?'09:30':'07:00'}</button>
-            ${escButton}
-          </div>
-        </div>
-
-        ${evidenceHTML}
-
-        <div class="btns" style="margin-top:10px;">
-          <button class="btn" onclick="$('#m').classList.add('show')">Thôi, muốn hoàn vé</button>
-        </div>
-      </div>
-    `;
-  } else {
-    // Mức 3
-    return `
-      <div class="ai">
-        <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-        <div class="box done">
-          <b>Đã tự động đổi sang BM 201 (07:00 sáng mai)!</b><br>
-          Vì chuyến BM 217 tối nay chỉ còn 1 chỗ không đủ 2 người, hệ thống đã tự động chốt chuyến sáng mai cho bạn.<br>
-          <div style="background:#fff; padding:6px 10px; border-radius:6px; margin:8px 0; border:1px solid #c3e6cb;">
-            ⏱️ Đang đếm ngược hoàn tác: <b>28 giây còn lại</b>.
-          </div>
-          <div class="btns">
-            <button class="btn danger" onclick="setState('normal'); alert('Đã hoàn tác vé về chuyến ban đầu!')">Hoàn tác đổi vé ngay</button>
-            ${escButton}
-          </div>
-        </div>
-        ${evidenceHTML}
-      </div>
-    `;
-  }
+// Chuyển sang nhân viên hỗ trợ
+function setStaff() {
+  if (currentLevel === 1) state_L1 = 'staff';
+  if (currentLevel === 2) state_L2 = 'staff';
+  if (currentLevel === 3) state_L3 = 'staff';
+  render();
 }
 
-// Render Kịch bản K2 (Hoàn vé + Đòi tiền bão)
-function renderK2(evidenceHTML, escButton) {
+// Khung nhìn nhân viên hỗ trợ
+function renderStaffView() {
   return `
     <div class="ai">
       <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-      <div class="conf conf-danger">
-        <span class="n">1</span><b>Quy định huỷ chuyến do thời tiết:</b> Chuyến BM 213 bị huỷ do bão (bất khả kháng) nên được hoàn 100% tiền vé, nhưng <b>không áp dụng bồi thường tiền mặt</b> theo Luật Hàng không.
+      Mình đã chuyển cuộc trò chuyện tới nhân viên hỗ trợ trực tuyến. Thời gian chờ khoảng <b>2 phút</b>.<br><br>
+      Nhân viên đã thấy sẵn hồ sơ tóm tắt:
+      <div style="background:#eef2f7; padding:8px 10px; border-radius:6px; margin:8px 0; font-size:12.5px;">
+        • Khách: Nguyễn Minh An + bé Nguyễn Gia Bình (5 tuổi)<br>
+        • Tình huống: Chuyến BM 213 huỷ do bão; khách yêu cầu chuyến BM 217 (chỉ còn 1 chỗ)<br>
+        • Trạng thái: Đang tạm giữ chỗ chuyến ${chosenFlight} sáng mai; cần nhân viên xử lý ngoại lệ.
       </div>
-      
-      <p style="margin:6px 0;">Nếu hoàn vé, bạn sẽ <b>mất toàn bộ quyền đổi sang các chuyến bay thay thế</b> và tiền hoàn sẽ về thẻ sau <b>14–90 ngày</b>.</p>
-      
-      <div class="box hold">
-        <b>Gợi ý bảo vệ hành trình:</b> Để không bị lỡ công việc và có chỗ về, mình khuyên bạn nên đổi sang chuyến sáng mai <b>BM 201 (07:00)</b> hoàn toàn miễn phí.
-      </div>
-
-      ${evidenceHTML}
-
-      <div class="btns" style="margin-top:12px;">
-        <button class="btn pri" onclick="switchScenario('k1')">Giữ vé, đổi sang sáng mai (0đ)</button>
-        <button class="btn danger" onclick="$('#m').classList.add('show')">Tôi vẫn muốn hoàn vé</button>
-        ${escButton}
+      Bạn không cần phải giải thích lại từ đầu.
+      <div style="margin-top:10px; color:var(--g); font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:6px;">
+        🟢 Đang kết nối nhân viên tư vấn trực tiếp...
       </div>
     </div>
   `;
 }
 
-// Render Kịch bản K3 (Mơ hồ sáng mai)
-function renderK3(evidenceHTML, escButton) {
-  return `
-    <div class="ai">
-      <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-      <div><span class="n">3</span>Sáng mai có <b>2 chuyến bay còn chỗ</b> cho cả hai mẹ con. Bạn muốn bay lúc mấy giờ?</div>
-
-      <div class="opt ${chosenFlight==='BM 201'?'sel':''}">
-        <div><b>BM 201 · 13/11 07:00</b><br><small>Còn 9 chỗ trống · Đến TP.HCM lúc 09:15</small></div>
-        <button class="btn ${chosenFlight==='BM 201'?'pri':''}" onclick="pickFlight('BM 201')">${chosenFlight==='BM 201'?'Đang chọn':'Chọn 07:00'}</button>
-      </div>
-
-      <div class="opt ${chosenFlight==='BM 205'?'sel':''}">
-        <div><b>BM 205 · 13/11 09:30</b><br><small>Còn 4 chỗ trống · Giờ đẹp cho bé đỡ mệt</small></div>
-        <button class="btn ${chosenFlight==='BM 205'?'pri':''}" onclick="pickFlight('BM 205')">${chosenFlight==='BM 205'?'Đang chọn':'Chọn 09:30'}</button>
-      </div>
-
-      <div class="box hold">
-        <span class="n">4</span><b>ĐÃ TỰ ĐỘNG GIỮ 2 CHỖ: ${chosenFlight}</b> trong <span class="timer" id="tm">20:00</span>.
-      </div>
-
-      <div class="btns" style="margin-top:10px;">
-        <button class="btn pri" onclick="setState('done')">Xác nhận đổi sang ${chosenFlight}</button>
-        ${escButton}
-      </div>
-      ${evidenceHTML}
-    </div>
-  `;
-}
-
-// Render Kịch bản K4 (Tách bé 5 tuổi)
-function renderK4(evidenceHTML, escButton) {
-  return `
-    <div class="ai">
-      <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-      <div class="conf conf-danger">
-        <span class="n">1</span><b>Từ chối thao tác:</b> Bé Nguyễn Gia Bình mới 5 tuổi. Theo Luật An toàn Hàng không, trẻ em dưới 12 tuổi <b>bắt buộc phải có người lớn đi cùng chuyến bay</b>. Hệ thống không thể tách vé cho bé bay một mình tối nay.
-      </div>
-
-      <p style="margin:6px 0;">Để an toàn cho bé, mình đã chuẩn bị sẵn phương án cả 2 mẹ con cùng bay chuyến sớm nhất sáng mai:</p>
-
-      <div class="opt sel">
-        <div><b>BM 201 · 13/11 07:00</b><br><small>Đủ 2 chỗ cho mẹ và bé · Giữ chỗ 20 phút</small></div>
-        <span style="color:var(--g);font-weight:700;font-size:12px;">Khuyên dùng</span>
-      </div>
-
-      <div class="btns" style="margin-top:12px;">
-        <button class="btn pri" onclick="setState('done')">Đổi cả 2 người sang BM 201</button>
-        <button class="btn" onclick="setState('staff')"><span class="n">5</span>Gặp nhân viên hỗ trợ trực tiếp</button>
-      </div>
-      ${evidenceHTML}
-    </div>
-  `;
-}
-
-// Render Kịch bản K5 (Happy Path)
-function renderK5(evidenceHTML, escButton) {
-  return `
-    <div class="ai">
-      <div class="who"><span class="n">1</span><span class="who-tag">AI Assistant</span> Trợ lý đặt chỗ Traveloka</div>
-      <div>Thông tin rất rõ ràng! Mình đã kiểm tra chuyến <b>BM 201 (07:00, 13/11)</b> còn 9 chỗ trống, đủ cho 2 hành khách.</div>
-
-      <div class="box hold" style="margin-top:8px;">
-        <span class="n">4</span><b>ĐÃ TỰ ĐỘNG GIỮ 2 CHỖ: BM 201</b> trong <span class="timer" id="tm">20:00</span>.<br>
-        <small>Khách: Nguyễn Minh An & Nguyễn Gia Bình · Phí đổi: 0 đ</small>
-      </div>
-
-      <div class="btns" style="margin-top:10px;">
-        <button class="btn pri" onclick="setState('done')">Xác nhận đổi sang BM 201</button>
-        <button class="btn" onclick="switchScenario('k3')">Xem chuyến khác</button>
-        ${escButton}
-      </div>
-      ${evidenceHTML}
-    </div>
-  `;
-}
-
-// Khởi tạo trang
+// Khởi động trang với K1 và Mức 2
 switchScenario('k1');
+switchLevel(2);
 </script>
 </body>
 </html>
